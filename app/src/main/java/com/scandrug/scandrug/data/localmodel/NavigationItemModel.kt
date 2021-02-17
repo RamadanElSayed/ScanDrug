@@ -1,4 +1,4 @@
-package com.scandrug.scandrug.presentation.home.drawer
+package com.scandrug.scandrug.data.localmodel
 
 
 data class NavigationItemModel(var icon: Int, var title: String)

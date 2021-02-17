@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.scandrug.scandrug.R
+import com.scandrug.scandrug.data.localmodel.NavigationItemModel
 import kotlinx.android.synthetic.main.row_nav_drawer.view.*
 
 

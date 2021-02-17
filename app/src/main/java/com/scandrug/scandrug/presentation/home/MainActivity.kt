@@ -1,8 +1,6 @@
 package com.scandrug.scandrug.presentation.home
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -15,7 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scandrug.scandrug.R
 import com.scandrug.scandrug.presentation.home.drawer.ClickListener
-import com.scandrug.scandrug.presentation.home.drawer.NavigationItemModel
+import com.scandrug.scandrug.data.localmodel.NavigationItemModel
 import com.scandrug.scandrug.presentation.home.drawer.NavigationRVAdapter
 import com.scandrug.scandrug.presentation.home.drawer.RecyclerTouchListener
 import kotlinx.android.synthetic.main.activity_main.*
@@ -79,12 +77,12 @@ class MainActivity : AppCompatActivity() {
         updateAdapter(0)
 
         // Set 'Home' as the default fragment when the app starts
-        val bundle = Bundle()
-        bundle.putString("fragmentName", "Home Fragment")
-        val homeFragment = ScanDrugFragment()
-        homeFragment.arguments = bundle
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.activity_main_content_id, homeFragment).commit()
+//        val bundle = Bundle()
+//        bundle.putString("fragmentName", "Home Fragment")
+//        val homeFragment = ScanDrugFragment()
+//        homeFragment.arguments = bundle
+//        supportFragmentManager.beginTransaction()
+//            .replace(R.id.activity_main_content_id, homeFragment).commit()
 
 
         // Close the soft keyboard when you open or close the Drawer

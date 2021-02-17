@@ -1,5 +1,4 @@
 package com.scandrug.scandrug.presentation.splash
-
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
