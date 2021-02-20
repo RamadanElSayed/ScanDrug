@@ -28,17 +28,25 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:weightSum="1"
-                android:gravity="center"
                 app:menu="@menu/cart_menu"
                 android:backgroundTint="@color/white"
                 app:contentInsetStart="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                <ImageView
-                    android:id="@+id/img_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/logo"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/img_logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:src="@drawable/logo"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </androidx.appcompat.widget.Toolbar>
 
