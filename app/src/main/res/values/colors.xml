@@ -12,6 +12,7 @@
     <color name="colorAccent">#3A40E8</color>
     <color name="colorPrimaryLite">#BBDEFB</color>
     <color name="dark_gray">#707070</color>
+    <color name="orange">#FFC70B</color>
     <color name="gray">#686868</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#fff</color>
     <color name="gray2">#F6F6F6</color>

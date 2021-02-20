@@ -17,4 +17,15 @@
     <dimen name="dimens_49">49dp</dimen>
     <dimen name="dimens_40dp">40dp</dimen>
     <dimen name="dimens_8dp">8dp</dimen>
+    <dimen name="dimens_30">30dp</dimen>
+    <dimen name="dimens_60">60dp</dimen>
+    <dimen name="dimens_40">40dp</dimen>
+    <dimen name="dimens_10">10dp</dimen>
+    <dimen name="text_size_22">22dp</dimen>
+    <dimen name="dimens_20">20dp</dimen>
+    <dimen name="dimens_70">70dp</dimen>
+    <dimen name="dimens_90">90dp</dimen>
+    <dimen name="dimens_50">50dp</dimen>
+    <dimen name="dimens_5">5dp</dimen>
+    <dimen name="text_size_15">15sp</dimen>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/registration_nav"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/userTypeFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -27,5 +27,22 @@
         android:name="com.scandrug.scandrug.presentation.authentication.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/userTypeFragment"
+        tools:layout="@layout/fragment_user_type"
+        android:name="com.scandrug.scandrug.presentation.authentication.UserTypeFragment"
+        android:label="UserTypeFragment" >
+        <action
+            android:id="@+id/action_userTypeFragment_to_deliveryActivity"
+            app:destination="@id/deliveryActivity" />
+        <action
+            android:id="@+id/action_userTypeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/deliveryActivity"
+        android:name="com.scandrug.scandrug.presentation.home.delivery.DeliveryActivity"
+        android:label="activity_delivery"
+        tools:layout="@layout/activity_delivery" />
 
 </navigation>
