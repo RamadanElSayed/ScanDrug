@@ -26,6 +26,7 @@
 
     <style name="text_input" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxStrokeColor">@color/white</item>
+        <item name="boxBackgroundColor">#F6F6F6</item>
     </style>
     <style name="TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="hintTextAppearance">@style/HintText</item>

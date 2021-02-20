@@ -49,7 +49,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/text_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimens_30"
@@ -58,7 +58,6 @@
                     app:endIconMode="clear_text"
                     android:focusable="true"
                     android:fontFamily="@font/campton_light"
-                    app:boxBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/drug_ic_id">
@@ -83,7 +82,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password_layout"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/text_input"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimens_10"
@@ -92,7 +91,6 @@
                     android:focusable="true"
                     app:endIconMode="password_toggle"
                     android:fontFamily="@font/campton_light"
-                    app:boxBackgroundColor="@android:color/transparent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/email_layout">
