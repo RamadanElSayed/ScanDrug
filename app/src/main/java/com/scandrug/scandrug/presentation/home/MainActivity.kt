@@ -4,11 +4,13 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.view.Menu
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.databinding.adapters.TimePickerBindingAdapter
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scandrug.scandrug.R
@@ -17,6 +19,7 @@ import com.scandrug.scandrug.data.localmodel.NavigationItemModel
 import com.scandrug.scandrug.presentation.home.drawer.NavigationRVAdapter
 import com.scandrug.scandrug.presentation.home.drawer.RecyclerTouchListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_scan_drug.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -115,12 +118,23 @@ class MainActivity : AppCompatActivity() {
 
         toggle.syncState()
 
+        supportActionBar?.apply {
+            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_menu)
+        }
+
 
         // Set Header Image
         navigation_header_img.setImageResource(R.drawable.scan_drug)
 
         // Set background of Drawer
         navigation_layout.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+         menuInflater.inflate(R.menu.cart_menu,menu)
+        return true
     }
 
     private fun updateAdapter(highlightItemPos: Int) {

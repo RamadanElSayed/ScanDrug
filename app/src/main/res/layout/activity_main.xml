@@ -28,23 +28,17 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 android:weightSum="1"
+                android:gravity="center"
+                app:menu="@menu/cart_menu"
+                android:backgroundTint="@color/white"
                 app:contentInsetStart="0dp"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-                <TextView
-                    android:id="@+id/activity_main_toolbar_title"
+                <ImageView
+                    android:id="@+id/img_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ellipsize="marquee"
-                    android:fadingEdge="horizontal"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:marqueeRepeatLimit="marquee_forever"
-                    android:scrollHorizontally="true"
-                    android:singleLine="true"
-                    android:textColor="#ff4500"
-                    android:textSize="30sp" />
+                    android:src="@drawable/logo"/>
 
             </androidx.appcompat.widget.Toolbar>
 

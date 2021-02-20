@@ -5,4 +5,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="scandrug">Scan<b>Drug</b></string>
+    <string name="scan">Scan</string>
+    <string name="notes">Some notes can be written in this space, to help user</string>
+    <string name="buy_now">Buy now</string>
+    <string name="city">City</string>
+    <string name="confirm_pay_now"><![CDATA[Confirm & Pay Now]]></string>
 </resources>
