@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="userTypeView"
+            type="com.scandrug.scandrug.presentation.authentication.interfaces.UserTypeView" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/first_section_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/second_section_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.7"
+                app:layout_constraintTop_toBottomOf="@+id/first_section_layout">
+
+                <ImageView
+                    android:id="@+id/drug_ic_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/scan_drug_blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/login_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimens_30"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/login_as"
+                    android:textAlignment="viewStart"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="26sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/drug_ic_id"
+                    app:textAllCaps="false" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/login_company_layout"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimens_90"
+                    android:layout_marginTop="@dimen/dimens_40"
+                    android:layout_marginBottom="@dimen/dimens_10"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/poppins_light"
+                    android:onClick="@{()->userTypeView.onCompanyLoginClicked()}"
+                    android:text="@string/company"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_22"
+                    app:cornerRadius="@dimen/dimens_40"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/login_label"
+                    app:layout_constraintWidth_percent="0.8"
+                    app:strokeColor="@color/colorPrimary"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/login_delivery_layout"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimens_90"
+                    android:layout_marginTop="@dimen/dimens_20"
+                    android:layout_marginBottom="@dimen/dimens_10"
+                    android:backgroundTint="@color/orange"
+                    android:fontFamily="@font/poppins_light"
+                    android:onClick="@{()->userTypeView.onCompanyLoginClicked()}"
+                    android:text="@string/delivery"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size_22"
+                    app:cornerRadius="@dimen/dimens_40"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/login_company_layout"
+                    app:layout_constraintWidth_percent="0.8"
+                    app:strokeColor="@color/orange"
+                    app:strokeWidth="1dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
