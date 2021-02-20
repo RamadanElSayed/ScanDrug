@@ -49,7 +49,7 @@
         style="@style/text_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Apartment Number"
+        android:hint="Street"
         android:textAlignment="center"
         android:layout_marginTop="@dimen/dimens_10dp"
         app:layout_constraintEnd_toEndOf="@+id/tl_apartment_number"
