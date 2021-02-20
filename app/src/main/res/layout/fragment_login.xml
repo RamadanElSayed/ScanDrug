@@ -1,14 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.authentication.LoginFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="loginView"
+            type="com.scandrug.scandrug.presentation.authentication.interfaces.LoginView" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:fillViewport="true">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dimens_30"
+            android:layout_marginEnd="@dimen/dimens_30"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/first_section_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintHeight_percent="0.1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/second_section_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHeight_percent="0.8"
+                app:layout_constraintTop_toBottomOf="@+id/first_section_layout">
+
+                <ImageView
+                    android:id="@+id/drug_ic_id"
+                    android:layout_width="100dp"
+                    android:layout_height="73dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/scan_drug_blue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/email_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimens_30"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    app:endIconMode="clear_text"
+                    android:focusable="true"
+                    android:fontFamily="@font/campton_light"
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/drug_ic_id">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etx_email"
+                        style="@style/SingleLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/campton_light"
+                        android:gravity="start"
+                        android:hint="@string/email"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/dark_gray"
+                        android:textColorHint="@color/dark_gray"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password_layout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimens_10"
+                    android:background="@android:color/transparent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:endIconMode="password_toggle"
+                    android:fontFamily="@font/campton_light"
+                    app:boxBackgroundColor="@android:color/transparent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/email_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etx_password"
+                        style="@style/SingleLine"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/campton_light"
+                        android:gravity="start"
+                        android:hint="@string/password"
+                        android:singleLine="true"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/dark_gray"
+                        android:textColorHint="@color/dark_gray"
+                        android:textSize="@dimen/dimens_16sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:textSize="@dimen/text_size_15"
+                    android:fontFamily="@font/campton_light"
+                    android:gravity="center"
+                    android:padding="@dimen/dimens_5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="@dimen/dimens_20"
+                    android:text="@string/forgot_password"
+                    app:layout_constraintTop_toBottomOf="@+id/password_layout"
+                    android:textColor="@color/colorPrimary"
+                    android:id="@+id/txt_forget_password"
+                    android:onClick="@{()->loginView.forgetPassword()}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/login_company_layout"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimens_70"
+                    android:layout_marginTop="@dimen/dimens_20"
+                    android:layout_marginBottom="@dimen/dimens_10"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/poppins_light"
+                    android:onClick="@{()->loginView.loginClicked()}"
+                    android:text="@string/login"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_22"
+                    app:cornerRadius="@dimen/dimens_5"
+                    android:textAllCaps="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txt_forget_password"
+                    app:strokeColor="@color/colorPrimary"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/login_delivery_layout"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimens_70"
+                    android:layout_marginTop="@dimen/dimens_20"
+                    android:layout_marginBottom="@dimen/dimens_10"
+                    android:textAllCaps="false"
+                    android:backgroundTint="@color/black"
+                    android:fontFamily="@font/poppins_light"
+                    android:onClick="@{()->loginView.signUpClicked()}"
+                    android:text="@string/sign_up"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_22"
+                    app:cornerRadius="@dimen/dimens_5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/login_company_layout"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="1dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
