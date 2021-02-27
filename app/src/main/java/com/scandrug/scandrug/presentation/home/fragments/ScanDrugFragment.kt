@@ -1,4 +1,5 @@
 package com.scandrug.scandrug.presentation.home.fragments
+
 import android.Manifest
 import android.app.Dialog
 import android.content.Context
@@ -26,21 +27,20 @@ import com.scandrug.scandrug.data.remotemodel.DrugDetailsModel
 import com.scandrug.scandrug.data.repository.MainRepoImp
 import com.scandrug.scandrug.databinding.FragmentScanDrugBinding
 import com.scandrug.scandrug.domain.usecases.MainUseCases
-import com.scandrug.scandrug.presentation.authentication.LoginFragmentDirections
 import com.scandrug.scandrug.presentation.home.interfaces.ScanOnClickView
 import com.scandrug.scandrug.presentation.home.viewmodel.ScanViewModel
 import com.scandrug.scandrug.presentation.home.viewmodelfactories.ScanViewModelFactory
 import com.scandrug.scandrug.utils.PermissionsUtils
 
 
-class ScanDrugFragment : Fragment(),ScanOnClickView {
+class ScanDrugFragment : Fragment(), ScanOnClickView {
     private lateinit var codeScanner: CodeScanner
     private lateinit var fragmentScanDrugBinding: FragmentScanDrugBinding
     private lateinit var navController: NavController
     private lateinit var scanViewModel: ScanViewModel
     private lateinit var useCases: MainUseCases
     private lateinit var email: String
-    private lateinit var  progressDialog: Dialog
+    private lateinit var progressDialog: Dialog
     private var sharedPreferences =
         BaseApplication.instance.getSharedPreferences(BuildConfig.PREF_NAME, Context.MODE_PRIVATE)
     private lateinit var appPreferences: AppPreferences
@@ -65,22 +65,23 @@ class ScanDrugFragment : Fragment(),ScanOnClickView {
 
 
     override fun scanClicked() {
-        fragmentScanDrugBinding.btnScan.visibility=View.GONE
-        fragmentScanDrugBinding.tvNotes.visibility=View.GONE
-        fragmentScanDrugBinding.imageView.visibility=View.GONE
-        fragmentScanDrugBinding.scannerView.visibility=View.VISIBLE
+        fragmentScanDrugBinding.btnScan.visibility = View.GONE
+        fragmentScanDrugBinding.tvNotes.visibility = View.GONE
+        fragmentScanDrugBinding.imageView.visibility = View.GONE
+        fragmentScanDrugBinding.scannerView.visibility = View.VISIBLE
         checkPermission()
     }
 
 
     override fun defaultScanClicked() {
-        fragmentScanDrugBinding.btnScan.visibility=View.VISIBLE
-        fragmentScanDrugBinding.tvNotes.visibility=View.VISIBLE
-        fragmentScanDrugBinding.imageView.visibility=View.VISIBLE
-        fragmentScanDrugBinding.scannerView.visibility=View.GONE
+        fragmentScanDrugBinding.btnScan.visibility = View.VISIBLE
+        fragmentScanDrugBinding.tvNotes.visibility = View.VISIBLE
+        fragmentScanDrugBinding.imageView.visibility = View.VISIBLE
+        fragmentScanDrugBinding.scannerView.visibility = View.GONE
 
 
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,
@@ -133,6 +134,7 @@ class ScanDrugFragment : Fragment(),ScanOnClickView {
             setDataAfterPermission()
         }
     }
+
     private fun setDataAfterPermission() {
         codeScanner = CodeScanner(requireActivity(), fragmentScanDrugBinding.scannerView)
         codeScanner.formats = CodeScanner.ALL_FORMATS
@@ -148,7 +150,7 @@ class ScanDrugFragment : Fragment(),ScanOnClickView {
         thread.start()
         codeScanner.decodeCallback = DecodeCallback { result: Result ->
             requireActivity().runOnUiThread {
-              //  codeScanner.startPreview()
+                //  codeScanner.startPreview()
                 val barCodeValue = result.text
                 if (!barCodeValue.isNullOrBlank()) {
                     val barCodeValueArray = barCodeValue.split("/").toTypedArray()
@@ -171,9 +173,11 @@ class ScanDrugFragment : Fragment(),ScanOnClickView {
                         drugDetailsModel.drugDosageUsed = barCodeValueArray[7]
                     scanViewModel.setDrugDetailsModel(drugDetailsModel)
                     showToast("barcode$barCodeValue")
-                   if (navController.currentDestination!!.id == R.id.homeFragment)
+                    if (navController.currentDestination!!.id == R.id.homeFragment)
                         findNavController().navigate(ScanDrugFragmentDirections.actionHomeFragmentToScanDetailsFragment())
                 }
+                else
+                    showToast(getString(R.string.scan_qrcode))
             }
         }
     }

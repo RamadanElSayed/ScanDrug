@@ -99,5 +99,6 @@
     <string name="email_used_before">this email has been used before !</string>
     <string name="required_field">Required field</string>
     <string name="confirm">Confirm</string>
+    <string name="scan_qrcode">Please Scan Invalid QR code!!</string>
 
 </resources>
