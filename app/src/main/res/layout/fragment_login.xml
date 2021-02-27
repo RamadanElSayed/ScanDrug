@@ -6,7 +6,7 @@
 
         <variable
             name="loginView"
-            type="com.scandrug.scandrug.presentation.authentication.interfaces.LoginView" />
+            type="com.scandrug.scandrug.presentation.authentication.interfaces.LoginOnClickView" />
     </data>
 
     <androidx.core.widget.NestedScrollView

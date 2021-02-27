@@ -29,4 +29,5 @@
     <dimen name="dimens_5">5dp</dimen>
     <dimen name="text_size_15">15sp</dimen>
     <dimen name="dimens_14sp">14sp</dimen>
+    <dimen name="dimens_80">80dp</dimen>
 </resources>

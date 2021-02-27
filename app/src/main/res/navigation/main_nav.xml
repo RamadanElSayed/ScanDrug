@@ -7,9 +7,26 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.scandrug.scandrug.presentation.home.ScanDrugFragment"
+        android:name="com.scandrug.scandrug.presentation.home.fragments.ScanDrugFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_scan_drug" >
+        tools:layout="@layout/fragment_scan_drug">
+        <action
+            android:id="@+id/action_homeFragment_to_scan_details_Fragment"
+            app:destination="@id/scan_details_Fragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/scan_details_Fragment"
+        android:name="com.scandrug.scandrug.presentation.home.fragments.ScanDetailsFragment"
+        tools:layout="@layout/fragment_scan_details">
+        <action
+            android:id="@+id/action_scan_details_Fragment_to_clientAddressFragment"
+            app:destination="@id/clientAddressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientAddressFragment"
+        android:name="com.scandrug.scandrug.presentation.home.fragments.ClientAddressFragment"
+        android:label="ClientAddressFragment"
+        tools:layout="@layout/fragment_address"
+        />
 </navigation>

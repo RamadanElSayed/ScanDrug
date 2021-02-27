@@ -1,6 +1,6 @@
 package com.scandrug.scandrug.data.repository
 
-import com.bnkit.bnkit.data.resources.Resource
+import com.scandrug.scandrug.data.resources.Resource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.scandrug.scandrug.domain.repositories.AuthRepository

@@ -1,4 +1,4 @@
-package com.bnkit.bnkit.data.resources
+package com.scandrug.scandrug.data.resources
 sealed class Resource<out T>(val data: T? = null,
                               val message: String? = null
 ) {

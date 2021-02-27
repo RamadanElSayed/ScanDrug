@@ -1,6 +1,6 @@
 package com.scandrug.scandrug.presentation.authentication.interfaces
 
-interface LoginView {
+interface LoginOnClickView {
     fun loginClicked()
     fun signUpClicked()
     fun forgetPassword()

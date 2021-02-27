@@ -1,4 +1,4 @@
-package com.scandrug.scandrug.presentation.home
+package com.scandrug.scandrug.presentation.home.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

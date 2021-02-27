@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="addressView"
+            type="com.scandrug.scandrug.presentation.home.interfaces.AddressScanOnClickView" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -70,6 +76,8 @@
         android:textSize="@dimen/dimens_16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="@string/confirm_pay_now"
+        android:onClick="@{()->addressView.onAddressScanClicked()}"
         android:padding="@dimen/dimens_16"
         android:layout_margin="@dimen/dimens_16"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

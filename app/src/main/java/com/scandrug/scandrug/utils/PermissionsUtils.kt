@@ -34,12 +34,12 @@ class PermissionsUtils {
         }
     }
     companion object{
-        fun hasPermissions(context: Context?, vararg permissions: String?): Boolean {
+        fun hasPermissions(context: Context?, vararg permissions: String): Boolean {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null) {
                 for (permission in permissions) {
                     if (ActivityCompat.checkSelfPermission(
                             context,
-                            permission!!
+                            permission
                         ) != PackageManager.PERMISSION_GRANTED
                     ) {
                         return false

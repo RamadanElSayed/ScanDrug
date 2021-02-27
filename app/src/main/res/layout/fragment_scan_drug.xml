@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="scanView"
+            type="com.scandrug.scandrug.presentation.home.interfaces.ScanOnClickView" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,11 +23,13 @@
             android:padding="17dp"
             android:text="@string/scan"
             android:textSize="@dimen/dimens_20sp"
+            android:onClick="@{()->scanView.scanClicked()}"
             app:icon="@drawable/ic_scan"
             app:iconGravity="textEnd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_notes"
@@ -50,6 +57,29 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <com.budiyev.android.codescanner.CodeScannerView
+            android:id="@+id/scanner_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:autoFocusButtonColor="@android:color/white"
+            app:autoFocusButtonVisible="true"
+            app:flashButtonColor="@android:color/white"
+            app:flashButtonVisible="true"
+            app:frameAspectRatioHeight="3"
+            app:frameAspectRatioWidth="4"
+            app:frameColor="@color/lava"
+            app:frameCornersRadius="0dp"
+            app:frameCornersSize="@dimen/dimens_50"
+            app:frameSize="0.5"
+            android:visibility="gone"
+            app:frameThickness="@dimen/dimens_5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:maskColor="@color/black_54"
+            app:layout_constraintBottom_toTopOf="@+id/btn_scan"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

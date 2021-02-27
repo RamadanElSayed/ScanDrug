@@ -39,6 +39,7 @@ class UserTypeFragment : Fragment() , UserTypeView {
     }
 
     override fun onDeliveryLoginClicked() {
+        appPreferences.setAccessToken("delivery")
         if (navController.currentDestination!!.id == R.id.userTypeFragment)
             findNavController().navigate(UserTypeFragmentDirections.actionUserTypeFragmentToDeliveryActivity())
     }

@@ -2,7 +2,7 @@ package com.scandrug.scandrug.domain.usecases
 
 import android.content.res.Resources
 import androidx.core.os.ConfigurationCompat
-import com.bnkit.bnkit.data.resources.Resource
+import com.scandrug.scandrug.data.resources.Resource
 import com.scandrug.scandrug.domain.repositories.AuthRepository
 import com.scandrug.scandrug.utils.Validator
 

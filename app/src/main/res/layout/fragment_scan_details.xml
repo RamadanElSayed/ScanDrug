@@ -1,176 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimens_16"
-        android:backgroundTint="@color/color_primary"
-        android:fontFamily="@font/campton_semibold"
-        android:padding="16dp"
-        android:text="Panadol Extra"
-        android:textColor="@color/white"
-        android:textSize="@dimen/dimens_16sp"
-        app:cornerRadius="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_table"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/campton_semibold"
-        android:text="24 tablets"
-        android:textSize="@dimen/dimens_16sp"
-        android:layout_margin="@dimen/dimens_16"
-        android:textColor="@color/color_primary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+        <variable
+            name="detailsScan"
+            type="com.scandrug.scandrug.presentation.home.interfaces.DetailsScanOnClickView" />
+    </data>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_mg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/campton_semibold"
-        android:text="500 mg"
-        android:textColor="@color/color_primary"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_table"
-        app:layout_constraintTop_toBottomOf="@+id/materialButton" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/campton_semibold"
-        android:text="500 mg"
-        android:textColor="@color/color_primary"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_mg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_mg" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimens_16"
+            android:backgroundTint="@color/color_primary"
+            android:clickable="false"
+            android:fontFamily="@font/campton_semibold"
+            android:padding="16dp"
+            android:text="Panadol Extra"
+            android:textColor="@color/white"
+            android:textSize="@dimen/dimens_16sp"
+            app:cornerRadius="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialButton"
+            >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/nested_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialButton">
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_desc_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/campton_bold"
-        android:text="Discription:"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_table" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_table"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/campton_semibold"
+                    android:text="24 tablets"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_desc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/gray"
-        android:text="Panadol Advance is an advanced formulation of paracetamol that contains Optizorb. Unlike some pain relievers that can sit in your stomach, Panadol Advance starts to release its medicine in as little as 5 minutes."
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc_label" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_mg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/campton_semibold"
+                    android:text="500 mg"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_table"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/campton_semibold"
+                    android:text="500 mg"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                     />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_desc_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/campton_bold"
+                    android:text="Discription:"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_table" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Panadol Advance is an advanced formulation of paracetamol that contains Optizorb. Unlike some pain relievers that can sit in your stomach, Panadol Advance starts to release its medicine in as little as 5 minutes."
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_desc_label" />
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_relieve_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/campton_bold"
-        android:text="Relieve:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_relieve_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/campton_bold"
+                    android:text="Relieve:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_relieve"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/roboto_regular"
-        android:text="Panadol Advance is used for fast and effective relief of mild to moderate pain including: ( Headache - Muscle aches and pain - Period pain - Toothache - Osteoarthritis ) It also relieves fever associated with cold and flu symptoms."
-        android:textColor="@color/gray"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_relieve_label" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_relieve"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="Panadol Advance is used for fast and effective relief of mild to moderate pain including: ( Headache - Muscle aches and pain - Period pain - Toothache - Osteoarthritis ) It also relieves fever associated with cold and flu symptoms."
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_relieve_label" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_side_effect_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/campton_bold"
-        android:text="Side effects:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_relieve" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_side_effect_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/campton_bold"
+                    android:text="Side effects:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_relieve" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_side_effect"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/roboto_regular"
-        android:text="if any of these effects persist or worsen, notify your doctor or pharmacist promptly."
-        android:textColor="@color/gray"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_side_effect_label" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_side_effect"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="if any of these effects persist or worsen, notify your doctor or pharmacist promptly."
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_side_effect_label" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_dosage_label"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/campton_bold"
-        android:text="Dosage used:"
-        android:textColor="@color/black"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_side_effect" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_dosage_label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/campton_bold"
+                    android:text="Dosage used:"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_side_effect" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_dosage"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dimens_16"
-        android:fontFamily="@font/roboto_regular"
-        android:text="1 tablet 500 mg"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/dimens_16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tv_price"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_dosage_label" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_dosage"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dimens_16"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="1 tablet 500 mg"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/dimens_16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_price"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_dosage_label" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/buy_now"
-        android:fontFamily="@font/campton_semibold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/dimens_16"
-        android:padding="@dimen/dimens_16"/>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dimens_16"
+            android:fontFamily="@font/campton_semibold"
+            android:onClick="@{()->detailsScan.buyClicked()}"
+            android:padding="@dimen/dimens_16"
+            android:text="@string/buy_now"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

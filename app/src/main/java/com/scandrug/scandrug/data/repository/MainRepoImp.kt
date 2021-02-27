@@ -13,14 +13,4 @@ class MainRepoImp(): MainRepository {
 //    val user = auth.currentUser
     val firestore = FirebaseFirestore.getInstance()
 
-//    override suspend fun getCurrentUserData(): DocumentSnapshot? {
-//        return try {
-//            val data = firestore.collection("users").document(user!!.uid)
-//                .get()
-//                .await()
-//            data
-//        } catch (e: Exception) {
-//            null
-//        }    }
-
 }
