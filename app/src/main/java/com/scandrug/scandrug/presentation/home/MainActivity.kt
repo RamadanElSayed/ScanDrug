@@ -13,6 +13,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.databinding.adapters.TimePickerBindingAdapter
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scandrug.scandrug.R
 import com.scandrug.scandrug.presentation.home.drawer.ClickListener
@@ -21,10 +25,12 @@ import com.scandrug.scandrug.presentation.home.drawer.NavigationRVAdapter
 import com.scandrug.scandrug.presentation.home.drawer.RecyclerTouchListener
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_scan_drug.*
+import kotlinx.coroutines.newFixedThreadPoolContext
 
 class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
     private lateinit var adapter: NavigationRVAdapter
+    private lateinit var navController: NavController
 
     private var items = arrayListOf(
         NavigationItemModel(R.drawable.ic_baseline_check_circle_24, "Completed requests"),
@@ -118,12 +124,14 @@ class MainActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
 
         toggle.syncState()
-
-        supportActionBar?.apply {
-            setHomeButtonEnabled(true)
-            setDisplayHomeAsUpEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_menu)
-        }
+        navController = findNavController(R.id.nav_host_fragment)
+        val appBarConfiguration = AppBarConfiguration(navController.graph,drawer_layout)
+        activity_main_toolbar.setupWithNavController(navController,appBarConfiguration)
+//        supportActionBar?.apply {
+//            setHomeButtonEnabled(true)
+//            setDisplayHomeAsUpEnabled(true)
+//            setHomeAsUpIndicator(R.drawable.ic_menu)
+//        }
 
 
         // Set Header Image
@@ -159,7 +167,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        navController.let {
+            it.addOnDestinationChangedListener { controller, destination, arguments ->
+
+//                if (destination.id != R.id.homeFragment){
+//                    activity_main_toolbar.menu.getItem(R.id.cart_item).setVisible(false)
+//                }else{
+////                    activity_main_toolbar.menu.getItem(R.id.cart_item).setVisible(true)
+//                }
+            }
+        }
+
+    }
+
+
     override fun onActivityReenter(resultCode: Int, data: Intent?) {
 
     }
+
+
 }
