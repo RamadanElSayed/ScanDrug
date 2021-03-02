@@ -100,5 +100,7 @@
     <string name="required_field">Required field</string>
     <string name="confirm">Confirm</string>
     <string name="scan_qrcode">Please Scan Invalid QR code!!</string>
+    <string name="complete_requests">Complete requests</string>
+    <string name="logout">Logout</string>
 
 </resources>

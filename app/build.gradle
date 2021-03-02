@@ -14,7 +14,7 @@ android {
 
     defaultConfig {
         applicationId "com.scandrug.scandrug"
-        minSdkVersion 21
+        minSdkVersion 26
         multiDexEnabled true
         targetSdkVersion 30
         versionCode 1

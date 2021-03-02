@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_scan_details_Fragment"
             app:destination="@id/scan_details_Fragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_completedRequestFragment"
+            app:destination="@id/completedRequestFragment" />
     </fragment>
 
     <fragment
@@ -29,4 +32,13 @@
         android:label="ClientAddressFragment"
         tools:layout="@layout/fragment_address"
         />
+    <fragment
+        android:id="@+id/completedRequestFragment"
+        android:name="com.scandrug.scandrug.presentation.home.fragments.CompletedRequestFragment"
+        android:label="fragment_completed_request"
+        tools:layout="@layout/fragment_completed_request" >
+        <action
+            android:id="@+id/action_completedRequestFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
