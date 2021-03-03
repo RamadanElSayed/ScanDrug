@@ -121,7 +121,6 @@ class ScanDrugFragment : Fragment(), ScanOnClickView {
             }
 
         })
-
     }
 
     private fun checkPermission() {
@@ -172,7 +171,6 @@ class ScanDrugFragment : Fragment(), ScanOnClickView {
                     if (barCodeValueArray.size > 7 && barCodeValueArray[7].isNotBlank())
                         drugDetailsModel.drugDosageUsed = barCodeValueArray[7]
                     scanViewModel.setDrugDetailsModel(drugDetailsModel)
-                    showToast("barcode$barCodeValue")
                     if (navController.currentDestination!!.id == R.id.homeFragment)
                         findNavController().navigate(ScanDrugFragmentDirections.actionHomeFragmentToScanDetailsFragment())
                 }
