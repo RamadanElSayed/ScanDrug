@@ -1,4 +1,4 @@
-package com.scandrug.scandrug.presentation.home.viewmodel
+package com.scandrug.scandrug.presentation.home.delivery.viewmodel
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,7 +11,6 @@ import com.scandrug.scandrug.base.BaseApplication
 import com.scandrug.scandrug.data.local.AppPreferences
 import com.scandrug.scandrug.data.remotemodel.DrugDetailsModel
 import com.scandrug.scandrug.data.remotemodel.RegistrationModel
-import com.scandrug.scandrug.data.remotemodel.UserData
 import com.scandrug.scandrug.data.resources.Resource
 import com.scandrug.scandrug.domain.usecases.AuthUseCases
 import com.scandrug.scandrug.domain.usecases.MainUseCases
@@ -21,7 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
-class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
+class DeliveryViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
 
     companion object {
         const val TAG = "LoginViewModel"
@@ -38,17 +37,14 @@ class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
     private var appPreferences: AppPreferences = AppPreferences(sharedPreferences)
     private var token: String = appPreferences.getAccessToken().toString()
     private lateinit var drugDetailsModel:DrugDetailsModel
+    private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
     val listOfDrugs: SingleLiveEvent<List<DrugDetailsModel>> = SingleLiveEvent()
-    val userData: SingleLiveEvent<UserData> = SingleLiveEvent()
-    private var drugDetailsItemList: MutableList<DrugDetailsModel> =
-        mutableListOf()
 
+    private lateinit var  drugDetailsItemList: MutableList<DrugDetailsModel>
     val navigateToMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
-    private val auth = FirebaseAuth.getInstance()
     val userId = auth.currentUser!!.uid
     fun setDrugDetailsModel(drugDetailsModel: DrugDetailsModel) {
-        drugDetailsModel.userId=userId
         this.drugDetailsModel = drugDetailsModel
     }
 
@@ -60,29 +56,20 @@ class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
         return mainUseCases.validateEmptyFiled(message)
     }
 
-    fun saveUserToDatabase(drugDetailsModel: DrugDetailsModel) {
+    fun getProcessingOrders() {
         loading.value = true
-        database.collection("Orders").
-        document(drugDetailsModel.orderId).
-        set(drugDetailsModel)
-            .addOnSuccessListener {
-                loading.value = false
-                navigateToMain.value = true
-            }.addOnFailureListener {
-                loading.value = false
+        database.collection("Orders").document(userId).collection("drugsOrders")
+            .whereIn("orderStatus", listOf(1,2,3)).
+       get().addOnSuccessListener {
+                drugDetailsItemList= mutableListOf()
+                drugDetailsItemList.clear()
+            for (document in it) {
+                drugDetailsItemList.add(document.toObject(DrugDetailsModel::class.java))
             }
-    }
-
-    fun getUserData() {
-        loading.value = true
-        database.collection("users").document(userId).
-            get().addOnSuccessListener {
-            userData.value=it.toObject(UserData::class.java)
+                listOfDrugs.value=drugDetailsItemList
                 loading.value = false
+
             }
 
     }
-
-
-
 }
