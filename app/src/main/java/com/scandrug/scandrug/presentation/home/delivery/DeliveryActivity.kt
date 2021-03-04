@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -61,14 +62,22 @@ class DeliveryActivity : AppCompatActivity() {
         }
 
         navlistner = NavController.OnDestinationChangedListener { controller, destination, arguments ->
-            if (destination.id == R.id.deliveryOrdersFragment){
-                supportActionBar?.apply {
-                    setHomeButtonEnabled(true)
-                    setDisplayHomeAsUpEnabled(true)
-                    setHomeAsUpIndicator(R.drawable.ic_menu)
-                    setDisplayShowTitleEnabled(false)
+
+            when(destination.id){
+                R.id.deliveryOrdersFragment -> {
+                    supportActionBar?.apply {
+                        setHomeButtonEnabled(true)
+                        setDisplayHomeAsUpEnabled(true)
+                        setHomeAsUpIndicator(R.drawable.ic_menu)
+                        setDisplayShowTitleEnabled(false)
+                    }
+                }
+                R.id.fragmentDeliveryDetails ->{
+                    tool_bar_title.text = "Delivery"
+                    img_logo.visibility = View.GONE
                 }
             }
+
         }
     }
 
