@@ -1,4 +1,5 @@
 package com.scandrug.scandrug.presentation.home.delivery.fragments
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import com.scandrug.scandrug.R
 import com.scandrug.scandrug.data.remotemodel.DrugDetailsModel
 import com.scandrug.scandrug.databinding.CartListItemBinding
 import com.scandrug.scandrug.databinding.CompleteListItemBinding
+import com.scandrug.scandrug.databinding.DeliveryListItemBinding
 
 class DeliveryDrugAdapter(private val onItemClicked: (DrugDetailsModel, position: Int) -> Unit) :
     RecyclerView.Adapter<DeliveryDrugAdapter.ItemViewHolder>() {
@@ -16,7 +18,7 @@ class DeliveryDrugAdapter(private val onItemClicked: (DrugDetailsModel, position
         arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val itemBinding = CompleteListItemBinding.inflate(
+        val itemBinding = DeliveryListItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -38,16 +40,15 @@ class DeliveryDrugAdapter(private val onItemClicked: (DrugDetailsModel, position
 
     class ItemViewHolder(
         private val context: Context,
-        private val DrugRowBinding: CompleteListItemBinding,
+        private val DrugRowBinding: DeliveryListItemBinding,
         private val onItemClicked: (DrugDetailsModel, position: Int) -> Unit
     ) : RecyclerView.ViewHolder(DrugRowBinding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(drugsResponseItem: DrugDetailsModel, position: Int) {
-            DrugRowBinding.tvProductName.text=drugsResponseItem.drugName
-            DrugRowBinding.tvPrice.text=drugsResponseItem.drugPrice
-            DrugRowBinding.tvTable.text=drugsResponseItem.tabletNumber
-            DrugRowBinding.tvMg.text=drugsResponseItem.tabletWeight
+            DrugRowBinding.tvClientName.text=drugsResponseItem.userName
+            DrugRowBinding.tvDelievryName.text="Delivery 1"
+            DrugRowBinding.tvAddress.text=drugsResponseItem.clientCity+" "+drugsResponseItem.clientStreet+" "+drugsResponseItem.clientStreet
             DrugRowBinding.cartItem.setOnClickListener { onItemClicked(drugsResponseItem, position) }
-
 
         }
     }
