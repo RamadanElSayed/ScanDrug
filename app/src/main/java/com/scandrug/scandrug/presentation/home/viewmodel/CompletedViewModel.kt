@@ -58,8 +58,8 @@ class CompletedViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
 
     fun getProcessingOrders() {
         loading.value = true
-        database.collection("Orders").document(userId).collection("drugsOrders").
-        whereEqualTo("","")
+        database.collection("Orders").
+        whereEqualTo("userId",userId)
             .whereIn("orderStatus", listOf(1,2,3)).
        get().addOnSuccessListener {
                 drugDetailsItemList= mutableListOf()
