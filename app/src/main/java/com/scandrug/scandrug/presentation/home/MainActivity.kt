@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navlistner: NavController.OnDestinationChangedListener
+    private lateinit var menu: Menu
     private var items = arrayListOf(
         NavigationItemModel(R.drawable.ic_baseline_check_circle_24, "Completed requests"),
         NavigationItemModel(R.drawable.ic_baseline_logout, "Logout"),
@@ -71,20 +73,68 @@ class MainActivity : AppCompatActivity() {
         }
 
          navlistner = NavController.OnDestinationChangedListener { controller, destination, arguments ->
-            if (destination.id == R.id.homeFragment){
-                supportActionBar?.apply {
-                    setHomeButtonEnabled(true)
-                    setDisplayHomeAsUpEnabled(true)
-                    setHomeAsUpIndicator(R.drawable.ic_menu)
-                    setDisplayShowTitleEnabled(false)
-                }
-            }
+
+             when(destination.id){
+                 R.id.homeFragment -> {
+                     supportActionBar?.apply {
+                         setHomeButtonEnabled(true)
+                         setDisplayHomeAsUpEnabled(true)
+                         setHomeAsUpIndicator(R.drawable.ic_menu)
+                         setDisplayShowTitleEnabled(false)
+                     }
+                     img_logo.visibility = View.VISIBLE
+                     tool_bar_title.visibility=  View.GONE
+
+                 }
+
+                 R.id.completedRequestFragment ->{
+                     img_logo.visibility = View.GONE
+                     tool_bar_title.text = "Completed Request"
+                     tool_bar_title.visibility=  View.VISIBLE
+
+                 }
+
+                 R.id.scan_details_Fragment ->{
+                     img_logo.visibility = View.GONE
+                     tool_bar_title.text = "Scan Drugs Details"
+                     tool_bar_title.visibility=  View.VISIBLE
+
+                 }
+
+                 R.id.clientAddressFragment ->{
+                     img_logo.visibility = View.GONE
+                     tool_bar_title.text = "Address"
+                     tool_bar_title.visibility=  View.VISIBLE
+
+                 }
+
+                 R.id.cartFragment ->{
+                     img_logo.visibility = View.GONE
+                     tool_bar_title.text = "Cart"
+                     tool_bar_title.visibility=  View.VISIBLE
+
+                 }
+
+                 R.id.completedDrugDetailsFragment ->{
+                     img_logo.visibility = View.GONE
+                     tool_bar_title.text = "Completed Request Details"
+                     tool_bar_title.visibility=  View.VISIBLE
+
+                 }
+
+             }
+
         }
     }
 
     override fun onResume() {
         super.onResume()
         navController.addOnDestinationChangedListener(navlistner)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        navController.removeOnDestinationChangedListener(navlistner)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
