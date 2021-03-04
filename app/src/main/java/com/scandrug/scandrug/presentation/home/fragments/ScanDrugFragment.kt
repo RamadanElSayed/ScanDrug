@@ -40,7 +40,6 @@ class ScanDrugFragment : Fragment(), ScanOnClickView {
     private lateinit var scanViewModel: ScanViewModel
     private lateinit var useCases: MainUseCases
     private lateinit var email: String
-    private lateinit var progressDialog: Dialog
     private var sharedPreferences =
         BaseApplication.instance.getSharedPreferences(BuildConfig.PREF_NAME, Context.MODE_PRIVATE)
     private lateinit var appPreferences: AppPreferences
@@ -52,6 +51,10 @@ class ScanDrugFragment : Fragment(), ScanOnClickView {
         fragmentScanDrugBinding.scanView = this
         navController =
             Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
+        navController.popBackStack(R.id.cartFragment, true)
+        navController.popBackStack(R.id.clientAddressFragment, true)
+        navController.popBackStack(R.id.scan_details_Fragment, true)
+        navController.popBackStack(R.id.completedRequestFragment, true)
         val repository = MainRepoImp()
         useCases = MainUseCases(repository)
         scanViewModel = ViewModelProvider(requireActivity(), ScanViewModelFactory(useCases))
@@ -111,15 +114,6 @@ class ScanDrugFragment : Fragment(), ScanOnClickView {
                 context?.getString(R.string.check_your_connection),
                 Toast.LENGTH_SHORT
             ).show()
-        })
-
-        scanViewModel.loading.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                progressDialog.show()
-            } else {
-                progressDialog.dismiss()
-            }
-
         })
     }
 

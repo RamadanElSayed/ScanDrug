@@ -54,4 +54,8 @@ class AppPreferences(private val prefs: SharedPreferences) {
 
     fun getThemeMode(): Int = prefs.getInt(KEY_THEME_MODE, 0)
 
+    fun removeAccessToken() {
+        prefs.edit().remove(KEY_ACCESS_TOKEN).apply()
+        prefs.edit().clear().apply()
+    }
 }

@@ -102,5 +102,9 @@
     <string name="scan_qrcode">Please Scan Invalid QR code!!</string>
     <string name="complete_requests">Complete requests</string>
     <string name="logout">Logout</string>
+    <string name="shipped">Shipped</string>
+    <string name="in_transit">In Transit</string>
+    <string name="delivered">Delivered</string>
+    <string name="cart">Cart</string>
 
 </resources>

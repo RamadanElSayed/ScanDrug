@@ -1,5 +1,7 @@
 package com.scandrug.scandrug.data.local
 
+import com.scandrug.scandrug.data.remotemodel.DrugDetailsModel
+
 class CacheInMemory {
 
     companion object Singleton {
@@ -15,18 +17,18 @@ class CacheInMemory {
 //        }
 //
 //
-//        fun saveOneClientIdentities(clientIdentities: ClientIdentityDo) {
-//            hashMap["IDENTITIES"] = clientIdentities
-//        }
+        fun setDrugDetailsModel(drugDetailsModel: DrugDetailsModel) {
+            hashMap["drugDetailsModel"] = drugDetailsModel
+        }
 //
 //        fun saveAllClientIdentities(clientIdentities: ClientIdentityDo) {
 //            hashMap["IDENTITIES"] = clientIdentities
 //        }
 //
 //
-//        fun getOneClientIdentities(): ClientIdentityDo? {
-//            return hashMap["IDENTITIES"] as? ClientIdentityDo
-//        }
+        fun getDrugDetailsModel(): DrugDetailsModel? {
+            return hashMap["drugDetailsModel"] as? DrugDetailsModel
+        }
 //
 //        fun saveProfileCache(cache: DatumDo) {
 //            hashMap["CACHE"] = cache
@@ -46,8 +48,7 @@ class CacheInMemory {
 //        }
 
         fun clearProfileData() {
-            hashMap.remove("CACHE")
-            hashMap.remove("TYPES")
+            hashMap.remove("drugDetailsModel")
         }
 
 

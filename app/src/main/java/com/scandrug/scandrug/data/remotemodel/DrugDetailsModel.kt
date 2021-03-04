@@ -13,5 +13,7 @@ data class DrugDetailsModel(
       var clientCity:String="",
       var clientApartment:String="",
       var orderStatus:Int=1,
-      var orderId:String=""
+      var orderId:String="",
+      var dateOrder:String=""
+
       )

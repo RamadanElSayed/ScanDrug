@@ -162,7 +162,7 @@ object TimeUtil {
 
     fun getDayMonthYear(timesTamp: Long): String {
         val date = Date(timesTamp)
-        val f: DateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm")
+        val f: DateFormat = SimpleDateFormat("dd/MM/yyyy HH:mm",Locale.ENGLISH)
         //f.setTimeZone(TimeZone.getTimeZone("Asia/Calcutta"));
         return f.format(date)
     }

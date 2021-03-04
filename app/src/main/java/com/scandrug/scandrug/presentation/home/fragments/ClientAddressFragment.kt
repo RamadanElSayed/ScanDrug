@@ -23,6 +23,7 @@ import com.scandrug.scandrug.domain.usecases.MainUseCases
 import com.scandrug.scandrug.presentation.home.interfaces.AddressScanOnClickView
 import com.scandrug.scandrug.presentation.home.viewmodel.ScanViewModel
 import com.scandrug.scandrug.presentation.home.viewmodelfactories.ScanViewModelFactory
+import com.scandrug.scandrug.utils.TimeUtil
 import java.util.*
 
 class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
@@ -36,6 +37,11 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
     private lateinit var street: String
     private lateinit var apartment: String
     private var isValid = true
+    private lateinit var calendar: Calendar
+    private var year:Int=0
+    private var month:Int=0
+    private var day:Int=0
+    private var timeMilli:Long=0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +49,7 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
     ): View? {
         fragmentAddressBinding = FragmentAddressBinding.inflate(inflater)
         fragmentAddressBinding.addressView = this
+
         setDialogConfiguration()
         navController =
             Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
@@ -56,12 +63,17 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
 
     override fun onAddressScanClicked() {
         if (checkValidateAllFields()) {
-
+            calendar= Calendar.getInstance()
+            year = calendar.get(Calendar.YEAR)
+            month = calendar.get(Calendar.MONTH)
+            day = calendar.get(Calendar.DAY_OF_MONTH)
             drugDetailsModel=scanViewModel.getDrugDetailsModel()
             drugDetailsModel.clientStreet=street
             drugDetailsModel.clientApartment=apartment
             drugDetailsModel.clientCity=city
             drugDetailsModel.orderStatus=1
+            timeMilli = calendar.timeInMillis
+            drugDetailsModel.dateOrder=TimeUtil.getDayMonthYear(timeMilli)
             drugDetailsModel.orderId=UUID.randomUUID().toString()
             scanViewModel.saveUserToDatabase(drugDetailsModel)
         }
@@ -88,7 +100,7 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
         street = fragmentAddressBinding.teStreet.text.toString()
         apartment = fragmentAddressBinding.teApartmentNumber.text.toString()
         if (scanViewModel.validateEmptyFiled(city) )
-            setInputLayoutSuccess( fragmentAddressBinding.tlCity)
+            setInputLayoutSuccess(fragmentAddressBinding.tlCity)
         else {
             isValid = false
             setInputLayoutError(
@@ -98,7 +110,7 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
         }
 
         if (scanViewModel.validateEmptyFiled(apartment) )
-            setInputLayoutSuccess( fragmentAddressBinding.tlApartmentNumber)
+            setInputLayoutSuccess(fragmentAddressBinding.tlApartmentNumber)
         else {
             isValid = false
             setInputLayoutError(
@@ -125,7 +137,11 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
 
     private fun observer() {
         scanViewModel.isError.observe(viewLifecycleOwner, {
-            Toast.makeText(context, context?.getString(R.string.check_your_connection), Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                context,
+                context?.getString(R.string.check_your_connection),
+                Toast.LENGTH_SHORT
+            ).show()
 
         })
 
@@ -176,7 +192,7 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
             }
         }
 
-        scanViewModel.navigateToMain.observe(viewLifecycleOwner,{
+        scanViewModel.navigateToMain.observe(viewLifecycleOwner, {
             if (it) {
                 showToast(getString(R.string.drug_success_message))
                 Thread.sleep(500)

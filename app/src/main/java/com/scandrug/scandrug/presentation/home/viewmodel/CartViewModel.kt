@@ -20,7 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
-class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
+class CartViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
 
     companion object {
         const val TAG = "LoginViewModel"
@@ -41,8 +41,8 @@ class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
     private val database = FirebaseFirestore.getInstance()
     val listOfDrugs: SingleLiveEvent<List<DrugDetailsModel>> = SingleLiveEvent()
 
-    private var drugDetailsItemList: MutableList<DrugDetailsModel> =
-        mutableListOf()
+    private lateinit var  drugDetailsItemList: MutableList<DrugDetailsModel>
+
     val navigateToMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val userId = auth.currentUser!!.uid
     fun setDrugDetailsModel(drugDetailsModel: DrugDetailsModel) {
@@ -75,6 +75,8 @@ class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
         database.collection("Orders").document(userId).collection("drugsOrders")
             .whereIn("orderStatus", listOf(1, 2,3)).
        get().addOnSuccessListener {
+                drugDetailsItemList= mutableListOf()
+                drugDetailsItemList.clear()
             for (document in it) {
                 drugDetailsItemList.add(document.toObject(DrugDetailsModel::class.java))
             }

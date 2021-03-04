@@ -20,7 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
-class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
+class CompletedViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
 
     companion object {
         const val TAG = "LoginViewModel"
@@ -41,8 +41,7 @@ class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
     private val database = FirebaseFirestore.getInstance()
     val listOfDrugs: SingleLiveEvent<List<DrugDetailsModel>> = SingleLiveEvent()
 
-    private var drugDetailsItemList: MutableList<DrugDetailsModel> =
-        mutableListOf()
+    private lateinit var  drugDetailsItemList: MutableList<DrugDetailsModel>
     val navigateToMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val userId = auth.currentUser!!.uid
     fun setDrugDetailsModel(drugDetailsModel: DrugDetailsModel) {
@@ -57,24 +56,13 @@ class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
         return mainUseCases.validateEmptyFiled(message)
     }
 
-    fun saveUserToDatabase(drugDetailsModel: DrugDetailsModel) {
-        loading.value = true
-        database.collection("Orders").document(userId).collection("drugsOrders").
-        document(drugDetailsModel.orderId).
-        set(drugDetailsModel)
-            .addOnSuccessListener {
-                loading.value = false
-                navigateToMain.value = true
-            }.addOnFailureListener {
-                loading.value = false
-            }
-    }
-
     fun getProcessingOrders() {
         loading.value = true
         database.collection("Orders").document(userId).collection("drugsOrders")
-            .whereIn("orderStatus", listOf(1, 2,3)).
+            .whereIn("orderStatus", listOf(1,2,3)).
        get().addOnSuccessListener {
+                drugDetailsItemList= mutableListOf()
+                drugDetailsItemList.clear()
             for (document in it) {
                 drugDetailsItemList.add(document.toObject(DrugDetailsModel::class.java))
             }

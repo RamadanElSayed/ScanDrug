@@ -2,42 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="detailsScan"
-            type="com.scandrug.scandrug.presentation.home.interfaces.DetailsScanOnClickView" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/materialButton"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimens_16"
-            android:backgroundTint="@color/color_primary"
-            android:clickable="false"
-            android:fontFamily="@font/campton_semibold"
-            android:padding="16dp"
-            android:text="Panadol Extra"
-            android:textColor="@color/white"
-            android:textSize="@dimen/dimens_16sp"
-            app:cornerRadius="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/materialButton"
+            android:layout_height="match_parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="100dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/dimens_40"
+
             >
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-               >
+                app:layout_constraintTop_toBottomOf="@+id/materialButton">
 
 
                 <com.google.android.material.textview.MaterialTextView
@@ -84,7 +59,7 @@
                     android:textSize="@dimen/dimens_16sp"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                     />
+                    />
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_desc_label"
                     android:layout_width="wrap_content"
@@ -190,17 +165,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimens_16"
-            android:fontFamily="@font/campton_semibold"
-            android:onClick="@{()->detailsScan.buyClicked()}"
-            android:padding="@dimen/dimens_16"
-            android:text="@string/buy_now"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

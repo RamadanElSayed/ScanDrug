@@ -1,17 +1,11 @@
 package com.scandrug.scandrug.presentation.home
-
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.Menu
-import android.view.View
-import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.content.ContextCompat
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import androidx.databinding.adapters.TimePickerBindingAdapter
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -19,20 +13,20 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.navigation.NavigationView
+import com.scandrug.scandrug.BuildConfig
 import com.scandrug.scandrug.R
-import com.scandrug.scandrug.presentation.home.drawer.ClickListener
+import com.scandrug.scandrug.base.BaseApplication
+import com.scandrug.scandrug.data.local.AppPreferences
+import com.scandrug.scandrug.data.local.CacheInMemory
 import com.scandrug.scandrug.data.localmodel.NavigationItemModel
-import com.scandrug.scandrug.presentation.home.drawer.NavigationRVAdapter
-import com.scandrug.scandrug.presentation.home.drawer.RecyclerTouchListener
+import com.scandrug.scandrug.presentation.authentication.AuthenticationActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_scan_drug.*
-import kotlinx.coroutines.newFixedThreadPoolContext
 
 class MainActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
-
+    private var sharedPreferences =
+        BaseApplication.instance.getSharedPreferences(BuildConfig.PREF_NAME, Context.MODE_PRIVATE)
+    private lateinit var appPreferences: AppPreferences
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navlistner: NavController.OnDestinationChangedListener
@@ -49,39 +43,37 @@ class MainActivity : AppCompatActivity() {
 
         // Set the toolbar
         setSupportActionBar(activity_main_toolbar)
-
-
-
-
-
+        activity_main_toolbar.title = "Your App Name";
+        appPreferences = AppPreferences(sharedPreferences)
 
         navController = findNavController(R.id.nav_host_fragment)
         nav_view.setupWithNavController(navController) //
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-
-
-        // Set Header Image
-//        navigation_header_img.setImageResource(R.drawable.scan_drug)
-//        activity_main_toolbar.setNavigationOnClickListener {
-//            drawerLayout.open()
-//        }
-
-//        nav_view.setNavigationItemSelectedListener { menuItem ->
-//            // Handle menu item selected
-//            menuItem.isChecked = true
-//            drawerLayout.close()
-//            true
-//        }
+        nav_view.setNavigationItemSelectedListener { menuItem ->
+            val id: Int = menuItem.itemId
+            if (id == R.id.nav_second_fragment) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                appPreferences.removeAccessToken()
+                val intent = Intent(this, AuthenticationActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                CacheInMemory.clearProfileData()
+                startActivity(intent)
+                finish()
+            }
+            true
+        }
 
          navlistner = NavController.OnDestinationChangedListener { controller, destination, arguments ->
-
             if (destination.id == R.id.homeFragment){
                 supportActionBar?.apply {
                     setHomeButtonEnabled(true)
                     setDisplayHomeAsUpEnabled(true)
                     setHomeAsUpIndicator(R.drawable.ic_menu)
+                    setDisplayShowTitleEnabled(false)
+                    title = "m,asssssssss"
                 }
             }
         }
@@ -89,7 +81,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-
         navController.addOnDestinationChangedListener(navlistner)
     }
 
@@ -98,10 +89,21 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.cart_item -> {
+                navController.popBackStack(R.id.cartFragment, true)
+                navController.navigate(R.id.cartFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-
     }
+
+
 }

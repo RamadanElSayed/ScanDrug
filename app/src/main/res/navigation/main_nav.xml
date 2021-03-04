@@ -40,5 +40,21 @@
         <action
             android:id="@+id/action_completedRequestFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_completedRequestFragment_to_completedDrugDetailsFragment"
+            app:destination="@id/completedDrugDetailsFragment" >
+            <argument
+                android:name="myObjectType"
+                android:defaultValue="SECOND"
+                 />
+        </action>
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.scandrug.scandrug.presentation.home.fragments.CartFragment"
+        android:label="CartFragment" />
+    <fragment
+        android:id="@+id/completedDrugDetailsFragment"
+        android:name="com.scandrug.scandrug.presentation.home.fragments.CompletedDrugDetailsFragment"
+        android:label="CompletedDrugDetailsFragment" />
 </navigation>

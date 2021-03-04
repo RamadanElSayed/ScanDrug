@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.home.delivery.DeliveryActivity"></activity>
+        <activity android:name=".presentation.home.delivery.DeliveryActivity" />
         <activity android:name=".presentation.home.MainActivity" />
         <activity android:name=".presentation.authentication.AuthenticationActivity" />
         <activity android:name=".presentation.splash.SplashActivity">
