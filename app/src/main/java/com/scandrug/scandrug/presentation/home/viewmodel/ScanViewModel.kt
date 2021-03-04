@@ -11,6 +11,7 @@ import com.scandrug.scandrug.base.BaseApplication
 import com.scandrug.scandrug.data.local.AppPreferences
 import com.scandrug.scandrug.data.remotemodel.DrugDetailsModel
 import com.scandrug.scandrug.data.remotemodel.RegistrationModel
+import com.scandrug.scandrug.data.remotemodel.UserData
 import com.scandrug.scandrug.data.resources.Resource
 import com.scandrug.scandrug.domain.usecases.AuthUseCases
 import com.scandrug.scandrug.domain.usecases.MainUseCases
@@ -37,15 +38,17 @@ class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
     private var appPreferences: AppPreferences = AppPreferences(sharedPreferences)
     private var token: String = appPreferences.getAccessToken().toString()
     private lateinit var drugDetailsModel:DrugDetailsModel
-    private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
     val listOfDrugs: SingleLiveEvent<List<DrugDetailsModel>> = SingleLiveEvent()
-
+    val userData: SingleLiveEvent<UserData> = SingleLiveEvent()
     private var drugDetailsItemList: MutableList<DrugDetailsModel> =
         mutableListOf()
+
     val navigateToMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    private val auth = FirebaseAuth.getInstance()
     val userId = auth.currentUser!!.uid
     fun setDrugDetailsModel(drugDetailsModel: DrugDetailsModel) {
+        drugDetailsModel.userId=userId
         this.drugDetailsModel = drugDetailsModel
     }
 
@@ -84,4 +87,17 @@ class ScanViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
             }
 
     }
+
+    fun getUserData() {
+        loading.value = true
+        database.collection("users").document(userId).
+            get().addOnSuccessListener {
+            userData.value=it.toObject(UserData::class.java)
+                loading.value = false
+            }
+
+    }
+
+
+
 }

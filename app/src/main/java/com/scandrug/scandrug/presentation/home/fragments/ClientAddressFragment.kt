@@ -17,6 +17,7 @@ import androidx.navigation.Navigation
 import com.google.android.material.textfield.TextInputLayout
 import com.scandrug.scandrug.R
 import com.scandrug.scandrug.data.remotemodel.DrugDetailsModel
+import com.scandrug.scandrug.data.remotemodel.UserData
 import com.scandrug.scandrug.data.repository.MainRepoImp
 import com.scandrug.scandrug.databinding.FragmentAddressBinding
 import com.scandrug.scandrug.domain.usecases.MainUseCases
@@ -33,6 +34,7 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
     private lateinit var scanViewModel: ScanViewModel
     private lateinit var useCases: MainUseCases
     private lateinit var drugDetailsModel: DrugDetailsModel
+    private lateinit var userData: UserData
     private lateinit var city: String
     private lateinit var street: String
     private lateinit var apartment: String
@@ -57,6 +59,7 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
         useCases = MainUseCases(repository)
         scanViewModel = ViewModelProvider(requireActivity(), ScanViewModelFactory(useCases))
             .get(ScanViewModel::class.java)
+        scanViewModel.getUserData()
         observer()
         return fragmentAddressBinding.root
     }
@@ -68,6 +71,7 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
             month = calendar.get(Calendar.MONTH)
             day = calendar.get(Calendar.DAY_OF_MONTH)
             drugDetailsModel=scanViewModel.getDrugDetailsModel()
+            drugDetailsModel.userName= userData.firstName
             drugDetailsModel.clientStreet=street
             drugDetailsModel.clientApartment=apartment
             drugDetailsModel.clientCity=city
@@ -144,7 +148,10 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
             ).show()
 
         })
-
+        scanViewModel.userData.observe(viewLifecycleOwner, {
+            userData= UserData()
+            userData=it
+        })
         scanViewModel.loading.observe(viewLifecycleOwner, {
             if (it) {
                 progressDialog.show()

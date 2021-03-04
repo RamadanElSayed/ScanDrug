@@ -14,6 +14,15 @@ data class DrugDetailsModel(
       var clientApartment:String="",
       var orderStatus:Int=1,
       var orderId:String="",
-      var dateOrder:String=""
+      var dateOrder:String="",
+      var userName:String="",
+      var userId:String=""
+
+)
+
+data class UserData(
+      var email:String="",
+      var firstName:String="",
+      var phoneNumber:String=""
 
       )

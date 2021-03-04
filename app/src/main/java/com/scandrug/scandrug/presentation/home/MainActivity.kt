@@ -63,6 +63,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+            else if (id == R.id.completedRequestFragment) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+                navController.popBackStack(R.id.completedRequestFragment, true)
+                navController.navigate(R.id.completedRequestFragment)
+            }
             true
         }
 
@@ -73,7 +78,6 @@ class MainActivity : AppCompatActivity() {
                     setDisplayHomeAsUpEnabled(true)
                     setHomeAsUpIndicator(R.drawable.ic_menu)
                     setDisplayShowTitleEnabled(false)
-                    title = "m,asssssssss"
                 }
             }
         }

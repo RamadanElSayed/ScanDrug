@@ -82,8 +82,8 @@ class LoginFragment : Fragment(), LoginOnClickView {
     }
 
     override fun forgetPassword() {
-        if (navController.currentDestination!!.id == R.id.loginFragment)
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
+//        if (navController.currentDestination!!.id == R.id.loginFragment)
+//            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
     }
 
 
