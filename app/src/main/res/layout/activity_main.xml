@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:openDrawer="start">
-
-
     <!-- Main Activity -->
     <LinearLayout
         android:id="@+id/main_activity_content_id"
@@ -80,7 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-         app:menu="@menu/nav_drawer_menu"
+        app:menu="@menu/nav_drawer_menu"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:headerLayout="@layout/nav_drwaer_header_layout"

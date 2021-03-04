@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav"
+    app:startDestination="@id/deliveryOrdersFragment">
+
+    <fragment
+        android:id="@+id/deliveryOrdersFragment"
+        android:name="com.scandrug.scandrug.presentation.home.delivery.fragments.DeliveryOrdersFragment"
+        android:label="fragment_delivery_orders"
+        tools:layout="@layout/fragment_delivery_orders" >
+        <action
+            android:id="@+id/action_deliveryOrdersFragment_to_fragmentDeliveryDetails"
+            app:destination="@id/fragmentDeliveryDetails" />
+    </fragment>
+    <activity
+        android:id="@+id/fragmentDeliveryDetails"
+        android:name="com.scandrug.scandrug.presentation.home.delivery.DeliveryActivity"
+        android:label="fragment_delivery_details"
+        tools:layout="@layout/fragment_delivery_details" />
+</navigation>
