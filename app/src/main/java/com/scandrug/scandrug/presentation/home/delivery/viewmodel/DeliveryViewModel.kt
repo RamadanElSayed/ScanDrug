@@ -58,7 +58,7 @@ class DeliveryViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
 
     fun getProcessingOrders() {
         loading.value = true
-        database.collection("Orders").document(userId).collection("drugsOrders")
+        database.collection("Orders")
             .whereIn("orderStatus", listOf(1,2,3)).
        get().addOnSuccessListener {
                 drugDetailsItemList= mutableListOf()
