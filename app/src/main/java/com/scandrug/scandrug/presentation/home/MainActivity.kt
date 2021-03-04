@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         // Set the toolbar
         setSupportActionBar(activity_main_toolbar)
-        activity_main_toolbar.title = "Your App Name";
+        activity_main_toolbar.title = "Your App Name"
         appPreferences = AppPreferences(sharedPreferences)
 
         navController = findNavController(R.id.nav_host_fragment)
