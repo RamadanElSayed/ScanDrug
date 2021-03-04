@@ -10,13 +10,14 @@
         android:name="com.scandrug.scandrug.presentation.home.delivery.fragments.DeliveryOrdersFragment"
         android:label="fragment_delivery_orders"
         tools:layout="@layout/fragment_delivery_orders" >
+
         <action
-            android:id="@+id/action_deliveryOrdersFragment_to_fragmentDeliveryDetails"
+            android:id="@+id/action_deliveryOrdersFragment_to_fragmentDeliveryDetails2"
             app:destination="@id/fragmentDeliveryDetails" />
     </fragment>
-    <activity
+    <fragment
         android:id="@+id/fragmentDeliveryDetails"
-        android:name="com.scandrug.scandrug.presentation.home.delivery.DeliveryActivity"
+        android:name="com.scandrug.scandrug.presentation.home.delivery.fragments.DeliveryDetailsFragment"
         android:label="fragment_delivery_details"
         tools:layout="@layout/fragment_delivery_details" />
 </navigation>
