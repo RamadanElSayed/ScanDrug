@@ -72,4 +72,16 @@ class DeliveryViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
             }
 
     }
+
+    fun saveUserToDatabase(drugDetailsModel: DrugDetailsModel, status:Int) {
+        loading.value = true
+        database.collection("Orders").
+        document(drugDetailsModel.orderId).update("orderStatus", status)
+            .addOnSuccessListener {
+                loading.value = false
+                navigateToMain.value = true
+            }.addOnFailureListener {
+                loading.value = false
+            }
+    }
 }

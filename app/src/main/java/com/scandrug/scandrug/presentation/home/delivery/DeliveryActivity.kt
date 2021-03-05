@@ -38,7 +38,6 @@ class DeliveryActivity : AppCompatActivity() {
 
         // Set the toolbar
         setSupportActionBar(activity_main_toolbar)
-        activity_main_toolbar.title = "Your App Name"
         appPreferences = AppPreferences(sharedPreferences)
 
         navController = findNavController(R.id.nav_host_fragment)
@@ -60,7 +59,6 @@ class DeliveryActivity : AppCompatActivity() {
             }
             true
         }
-
         navlistner = NavController.OnDestinationChangedListener { controller, destination, arguments ->
 
             when(destination.id){
@@ -69,12 +67,17 @@ class DeliveryActivity : AppCompatActivity() {
                         setHomeButtonEnabled(true)
                         setDisplayHomeAsUpEnabled(true)
                         setHomeAsUpIndicator(R.drawable.ic_menu)
-                        setDisplayShowTitleEnabled(false)
+                        setDisplayShowTitleEnabled(true)
+                        tool_bar_title.text = "Scan Drug"
+                        tool_bar_title.visibility=  View.VISIBLE
+                        img_logo.visibility = View.GONE
                     }
                 }
                 R.id.fragmentDeliveryDetails ->{
                     tool_bar_title.text = "Delivery"
+                    tool_bar_title.visibility=  View.VISIBLE
                     img_logo.visibility = View.GONE
+
                 }
             }
 

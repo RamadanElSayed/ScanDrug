@@ -62,7 +62,7 @@ class RegistrationViewModel(private val authUseCases: AuthUseCases) : ViewModel(
 
     fun registerUser(email: String, password: String) =
         liveData(Dispatchers.IO) {
-            emit(Resource.Loading(""))
+            emit(Resource.Loading())
             try {
                 val response = authUseCases.registerUser(email, password)
                 emit(response)
@@ -76,7 +76,7 @@ class RegistrationViewModel(private val authUseCases: AuthUseCases) : ViewModel(
         preRegistrationModel: RegistrationModel
     ) {
         registrationModel = RegistrationModel()
-        val userId = auth.currentUser!!.uid
+        auth.currentUser!!.uid
         val items = HashMap<String, Any>()
         registrationModel.userName = preRegistrationModel.userName
         registrationModel.emailTxt = preRegistrationModel.emailTxt

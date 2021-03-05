@@ -80,11 +80,11 @@ class MainActivity : AppCompatActivity() {
                          setHomeButtonEnabled(true)
                          setDisplayHomeAsUpEnabled(true)
                          setHomeAsUpIndicator(R.drawable.ic_menu)
-                         setDisplayShowTitleEnabled(false)
+                         setDisplayShowTitleEnabled(true)
                      }
-                     img_logo.visibility = View.VISIBLE
-                     tool_bar_title.visibility=  View.GONE
-
+                     tool_bar_title.text = "Scan Drug"
+                     tool_bar_title.visibility=  View.VISIBLE
+                     img_logo.visibility = View.GONE
                  }
 
                  R.id.completedRequestFragment ->{

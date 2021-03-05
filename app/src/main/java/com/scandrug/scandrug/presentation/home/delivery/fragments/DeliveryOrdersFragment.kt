@@ -58,7 +58,7 @@ class DeliveryOrdersFragment : Fragment() {
         observer()
         initialRecycleresData()
         appPreferences = AppPreferences(sharedPreferences)
-        val activity = requireActivity()
+        requireActivity()
         deliveryViewModel.getProcessingOrders()
         return deliveryOrdersBinding.root
     }

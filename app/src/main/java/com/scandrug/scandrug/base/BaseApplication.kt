@@ -40,7 +40,7 @@ class BaseApplication : Application() {
     private fun getThemMode() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                var mode = 0
+                var mode: Int
                 if (appPreferences.getThemeMode() == 0) {
                     if (isPreAndroidTen()) {
                         mode = AppCompatDelegate.MODE_NIGHT_AUTO_BATTERY

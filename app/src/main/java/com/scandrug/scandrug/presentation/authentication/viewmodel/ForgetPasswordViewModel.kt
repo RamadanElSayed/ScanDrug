@@ -33,7 +33,7 @@ class ForgetPasswordViewModel(private val authUseCases: AuthUseCases) : ViewMode
     }
     fun resetPassword(email: String) =
         liveData(Dispatchers.IO) {
-            emit(Resource.Loading(""))
+            emit(Resource.Loading())
             try {
                 val response = authUseCases.resetPasswordUser(email)
                 emit(response)

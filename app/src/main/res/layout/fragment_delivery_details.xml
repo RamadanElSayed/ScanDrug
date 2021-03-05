@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="deliveryOnClickView"
+            type="com.scandrug.scandrug.presentation.home.delivery.fragments.DeliveryOnClickView" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="@dimen/dimens_16"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@drawable/scan_drug_blue"/>
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -54,56 +60,14 @@
         app:layout_constraintEnd_toEndOf="@+id/tl_status"
         app:layout_constraintStart_toStartOf="@+id/tl_status">
 
-        <ImageView
-            android:id="@+id/img_step_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimens_16"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toTopOf="@+id/imageView2"
-            app:layout_constraintStart_toStartOf="@+id/imageView2"
-            app:layout_constraintEnd_toEndOf="@+id/imageView2"/>
-        <ImageView
-            android:id="@+id/img_step_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimens_16"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toTopOf="@+id/imageView3"
-            app:layout_constraintStart_toStartOf="@+id/imageView3"
-            app:layout_constraintEnd_toEndOf="@+id/imageView3"/>
-
-        <ImageView
-            android:id="@+id/img_step_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimens_16"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toTopOf="@+id/imageView4"
-            app:layout_constraintStart_toStartOf="@+id/imageView4"
-            app:layout_constraintEnd_toEndOf="@+id/imageView4"/>
-        <ImageView
-            android:id="@+id/img_step_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimens_16"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toTopOf="@+id/imageView5"
-            app:layout_constraintStart_toStartOf="@+id/imageView5"
-            app:layout_constraintEnd_toEndOf="@+id/imageView5"/>
-
-
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="@dimen/dimens_40dp"
             android:layout_height="@dimen/dimens_40dp"
-            android:layout_marginStart="@dimen/dimens_16"
-            android:layout_marginTop="@dimen/dimens_16"
             android:scaleType="fitXY"
-            app:tint="@color/gray_selected"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintTop_toTopOf="@+id/img_step_1"
+            android:layout_marginTop="@dimen/dimens_16"
+            android:layout_marginStart="@dimen/dimens_16"
             app:layout_constraintEnd_toStartOf="@+id/divider"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -113,7 +77,6 @@
             android:id="@+id/divider"
             android:layout_width="0dp"
             android:layout_height="3dp"
-            android:background="@color/gray_selected"
             app:layout_constraintBottom_toBottomOf="@+id/imageView2"
             app:layout_constraintEnd_toStartOf="@+id/imageView3"
             app:layout_constraintHorizontal_bias="0.5"
@@ -125,8 +88,6 @@
             android:layout_width="@dimen/dimens_40dp"
             android:layout_height="@dimen/dimens_40dp"
             android:scaleType="fitXY"
-            app:tint="@color/gray_selected"
-            android:src="@drawable/ic_baseline_check_circle_24"
             app:layout_constraintBottom_toBottomOf="@+id/divider"
             app:layout_constraintEnd_toStartOf="@+id/divider2"
             app:layout_constraintHorizontal_bias="0.5"
@@ -138,7 +99,6 @@
             android:id="@+id/divider2"
             android:layout_width="0dp"
             android:layout_height="3dp"
-            android:background="@color/gray_selected"
             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintHorizontal_bias="0.5"
@@ -149,39 +109,13 @@
             android:id="@+id/imageView4"
             android:layout_width="@dimen/dimens_40dp"
             android:layout_height="@dimen/dimens_40dp"
-            android:src="@drawable/ic_baseline_check_circle_24"
+            android:layout_marginEnd="@dimen/dimens_16"
             android:scaleType="fitXY"
-            app:tint="@color/gray_selected"
             app:layout_constraintBottom_toBottomOf="@+id/divider2"
-            app:layout_constraintEnd_toStartOf="@+id/divider5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/divider2"
             app:layout_constraintTop_toTopOf="@+id/divider2" />
-
-        <View
-            android:id="@+id/divider5"
-            android:layout_width="0dp"
-            android:layout_height="3dp"
-            android:background="@color/gray_selected"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-            app:layout_constraintEnd_toStartOf="@+id/imageView5"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
-            app:layout_constraintTop_toTopOf="@+id/imageView4" />
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="@dimen/dimens_40dp"
-            android:layout_height="@dimen/dimens_40dp"
-            android:layout_marginEnd="@dimen/dimens_16"
-            android:scaleType="fitXY"
-            app:tint="@color/gray_selected"
-            android:src="@drawable/ic_baseline_check_circle_24"
-            app:layout_constraintBottom_toBottomOf="@+id/divider5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/divider5"
-            app:layout_constraintTop_toTopOf="@+id/divider5" />
 
 
         <com.google.android.material.textview.MaterialTextView
@@ -221,16 +155,17 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/materialTextView4"
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto_regular"
-            android:text="@string/delivered"
+            android:text="22/2/2020"
             android:textAlignment="center"
+            android:textColor="@color/gray"
             android:textSize="10sp"
-            app:layout_constraintEnd_toEndOf="@+id/imageView5"
-            app:layout_constraintStart_toStartOf="@+id/imageView5"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+            android:id="@+id/date_id"
+            app:layout_constraintEnd_toEndOf="@+id/materialTextView"
+            app:layout_constraintStart_toStartOf="@+id/materialTextView"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -250,6 +185,7 @@
             android:id="@+id/ac_status"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:inputType="none"
             android:focusable="false" />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.button.MaterialButton
@@ -259,7 +195,9 @@
         android:layout_margin="@dimen/dimens_16"
         android:padding="@dimen/dimens_16"
         android:text="@string/confirm"
+        android:onClick="@{()->deliveryOnClickView.confirmClicked()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

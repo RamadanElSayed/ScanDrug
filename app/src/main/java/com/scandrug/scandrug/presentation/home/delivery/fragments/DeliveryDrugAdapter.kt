@@ -47,7 +47,7 @@ class DeliveryDrugAdapter(private val onItemClicked: (DrugDetailsModel, position
         fun bind(drugsResponseItem: DrugDetailsModel, position: Int) {
             DrugRowBinding.tvClientName.text=drugsResponseItem.userName
             DrugRowBinding.tvDelievryName.text="Delivery 1"
-            DrugRowBinding.tvAddress.text=drugsResponseItem.clientCity+" "+drugsResponseItem.clientStreet+" "+drugsResponseItem.clientStreet
+            DrugRowBinding.tvAddress.text=drugsResponseItem.clientCity+" "+drugsResponseItem.clientApartment+" "+drugsResponseItem.clientStreet
             DrugRowBinding.cartItem.setOnClickListener { onItemClicked(drugsResponseItem, position) }
 
         }

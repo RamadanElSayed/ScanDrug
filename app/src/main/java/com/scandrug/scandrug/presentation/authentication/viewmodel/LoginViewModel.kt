@@ -32,7 +32,7 @@ class LoginViewModel(private val authUseCases: AuthUseCases) : ViewModel() {
 
     fun loginUser(email: String, password: String) =
         liveData(Dispatchers.IO) {
-            emit(Resource.Loading(""))
+            emit(Resource.Loading())
             try {
                 val response = authUseCases.loginUser(email, password)
                 emit(response)
@@ -52,7 +52,7 @@ class LoginViewModel(private val authUseCases: AuthUseCases) : ViewModel() {
 
     fun registerUser(email: String, password: String) =
         liveData(Dispatchers.IO) {
-            emit(Resource.Loading(""))
+            emit(Resource.Loading())
             try {
                 val response = authUseCases.registerUser(email, password)
                 emit(response)
