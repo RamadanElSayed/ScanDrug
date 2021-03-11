@@ -38,6 +38,9 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
     private lateinit var city: String
     private lateinit var street: String
     private lateinit var apartment: String
+    private lateinit var cardNumber: String
+    private lateinit var expireDate: String
+    private lateinit var csv: String
     private var isValid = true
     private lateinit var calendar: Calendar
     private var year:Int=0
@@ -103,6 +106,9 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
         city = fragmentAddressBinding.teCity.text.toString()
         street = fragmentAddressBinding.teStreet.text.toString()
         apartment = fragmentAddressBinding.teApartmentNumber.text.toString()
+        cardNumber = fragmentAddressBinding.teCardNumber.text.toString()
+        expireDate = fragmentAddressBinding.teExpireDate.text.toString()
+        csv = fragmentAddressBinding.teCsv.text.toString()
         if (scanViewModel.validateEmptyFiled(city) )
             setInputLayoutSuccess(fragmentAddressBinding.tlCity)
         else {
@@ -129,6 +135,36 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
             isValid = false
             setInputLayoutError(
                 fragmentAddressBinding.tlStreet,
+                getString(R.string.required_field)
+            )
+        }
+
+        if (scanViewModel.validateEmptyFiled(cardNumber) )
+            setInputLayoutSuccess(fragmentAddressBinding.tlCardNumber)
+        else {
+            isValid = false
+            setInputLayoutError(
+                fragmentAddressBinding.tlCardNumber,
+                getString(R.string.required_field)
+            )
+        }
+
+        if (scanViewModel.validateEmptyFiled(expireDate) )
+            setInputLayoutSuccess(fragmentAddressBinding.tlExpireDate)
+        else {
+            isValid = false
+            setInputLayoutError(
+                fragmentAddressBinding.tlExpireDate,
+                getString(R.string.required_field)
+            )
+        }
+
+        if (scanViewModel.validateEmptyFiled(csv) )
+            setInputLayoutSuccess(fragmentAddressBinding.tlCsv)
+        else {
+            isValid = false
+            setInputLayoutError(
+                fragmentAddressBinding.tlCsv,
                 getString(R.string.required_field)
             )
         }
@@ -195,6 +231,44 @@ class ClientAddressFragment : Fragment() ,AddressScanOnClickView{
                     )
                 } else {
                     setInputLayoutSuccess(fragmentAddressBinding.tlApartmentNumber)
+                }
+            }
+        }
+
+        fragmentAddressBinding.teCardNumber.doAfterTextChanged { s ->
+            if (s.toString().isNotEmpty()) {
+                if (!scanViewModel.validateEmptyFiled(s.toString())) {
+                    setInputLayoutError(
+                        fragmentAddressBinding.tlCardNumber,
+                        getString(R.string.required_field)
+                    )
+                } else {
+                    setInputLayoutSuccess(fragmentAddressBinding.tlCardNumber)
+                }
+            }
+        }
+
+        fragmentAddressBinding.teExpireDate.doAfterTextChanged { s ->
+            if (s.toString().isNotEmpty()) {
+                if (!scanViewModel.validateEmptyFiled(s.toString())) {
+                    setInputLayoutError(
+                        fragmentAddressBinding.tlExpireDate,
+                        getString(R.string.required_field)
+                    )
+                } else {
+                    setInputLayoutSuccess(fragmentAddressBinding.tlExpireDate)
+                }
+            }
+        }
+        fragmentAddressBinding.teCsv.doAfterTextChanged { s ->
+            if (s.toString().isNotEmpty()) {
+                if (!scanViewModel.validateEmptyFiled(s.toString())) {
+                    setInputLayoutError(
+                        fragmentAddressBinding.tlCsv,
+                        getString(R.string.required_field)
+                    )
+                } else {
+                    setInputLayoutSuccess(fragmentAddressBinding.tlCsv)
                 }
             }
         }

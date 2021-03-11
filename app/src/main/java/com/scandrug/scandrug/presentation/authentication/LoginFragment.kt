@@ -33,6 +33,7 @@ import com.scandrug.scandrug.presentation.authentication.viewmodelfactories.Logi
 import com.scandrug.scandrug.presentation.home.viewmodel.ScanViewModel
 import com.scandrug.scandrug.presentation.home.viewmodelfactories.ScanViewModelFactory
 import com.scandrug.scandrug.presentation.home.MainActivity
+import com.scandrug.scandrug.presentation.home.delivery.DeliveryActivity
 import java.util.*
 
 class LoginFragment : Fragment(), LoginOnClickView {
@@ -59,13 +60,15 @@ class LoginFragment : Fragment(), LoginOnClickView {
     ): View? {
         fragmentLoginBinding = FragmentLoginBinding.inflate(inflater)
         fragmentLoginBinding.loginView = this
+        val repository = AuthRepoImp()
+        useCases = AuthUseCases(repository)
+        loginViewModel = ViewModelProvider(requireActivity(), LoginViewModelFactory(useCases))
+            .get(LoginViewModel::class.java)
+        setLoginTypeConfiguration()
         setDialogConfiguration()
         navController =
             Navigation.findNavController(requireActivity(), R.id.nav_host_fragment)
-        val repository = AuthRepoImp()
-        useCases = AuthUseCases(repository)
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory(useCases))
-            .get(LoginViewModel::class.java)
+
         observer()
         appPreferences = AppPreferences(sharedPreferences)
 
@@ -84,6 +87,21 @@ class LoginFragment : Fragment(), LoginOnClickView {
     override fun forgetPassword() {
 //        if (navController.currentDestination!!.id == R.id.loginFragment)
 //            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgetPasswordFragment())
+    }
+
+    override fun setLoginTypeConfiguration() {
+
+        if(loginViewModel.getLoginType().equals("user"))
+        {
+            fragmentLoginBinding.txtForgetPassword.visibility=View.VISIBLE
+            fragmentLoginBinding.loginDeliveryLayout.visibility=View.VISIBLE
+
+        }
+        else if(loginViewModel.getLoginType().equals("delivery"))
+        {
+            fragmentLoginBinding.txtForgetPassword.visibility=View.GONE
+            fragmentLoginBinding.loginDeliveryLayout.visibility=View.GONE
+        }
     }
 
 
@@ -124,15 +142,33 @@ class LoginFragment : Fragment(), LoginOnClickView {
                         is Resource.Success -> {
                             loginViewModel.loading.postValue(false)
                             showToast(getString(R.string.login_success_message))
-                            appPreferences.setAccessToken("company")
-                            val intent = Intent(context, MainActivity::class.java)
-                            intent.flags =
-                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or
-                                        Intent.FLAG_ACTIVITY_CLEAR_TOP
+                            if(loginViewModel.getLoginType().equals("user"))
+                            {
+                                appPreferences.setAccessToken("company")
+                                val intent = Intent(context, MainActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                                            Intent.FLAG_ACTIVITY_CLEAR_TOP
 
-                            startActivity(intent)
-                            activity?.finish()
-                            activity?.finishAffinity()
+                                startActivity(intent)
+                                activity?.finish()
+                                activity?.finishAffinity()
+                            }
+                            else if(loginViewModel.getLoginType().equals("delivery"))
+                            {
+                                appPreferences.setAccessToken("delivery")
+                                val intent = Intent(context, DeliveryActivity::class.java)
+                                intent.flags =
+                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK or
+                                            Intent.FLAG_ACTIVITY_CLEAR_TOP
+
+                                startActivity(intent)
+                                activity?.finish()
+                                activity?.finishAffinity()
+                            }
+
+
+
                         }
                         is Resource.Failure -> {
                             loginViewModel.loading.postValue(false)

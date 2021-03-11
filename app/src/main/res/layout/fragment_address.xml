@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:hint="Street"
         android:textAlignment="center"
-        android:layout_marginTop="@dimen/dimens_10dp"
+        android:layout_marginTop="@dimen/dimens_20dp"
         app:layout_constraintEnd_toEndOf="@+id/tl_apartment_number"
         app:layout_constraintStart_toStartOf="@+id/tl_city"
         app:layout_constraintTop_toBottomOf="@+id/tl_city"
@@ -69,6 +69,67 @@
             android:layout_height="match_parent" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_card_number"
+        style="@style/text_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Card Number"
+        android:textAlignment="center"
+
+        android:layout_marginTop="@dimen/dimens_20dp"
+        app:layout_constraintEnd_toEndOf="@+id/tl_apartment_number"
+        app:layout_constraintStart_toStartOf="@+id/tl_street"
+        app:layout_constraintTop_toBottomOf="@+id/tl_street"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/te_card_number"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_csv"
+        style="@style/text_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="CSV"
+        android:layout_marginTop="@dimen/dimens_20dp"
+        android:layout_marginStart="@dimen/dimens_16"
+        app:layout_constraintEnd_toStartOf="@+id/tl_apartment_number"
+        app:layout_constraintWidth_percent="0.4"
+        android:layout_marginEnd="@dimen/dimens_10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_card_number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/te_csv"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:maxLength="3"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tl_expire_date"
+        style="@style/text_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dimens_10dp"
+        android:hint="Expire Date"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tl_csv"
+        app:layout_constraintTop_toTopOf="@+id/tl_csv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/te_expire_date"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

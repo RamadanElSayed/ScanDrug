@@ -5,6 +5,7 @@ import androidx.lifecycle.liveData
 import com.scandrug.scandrug.BuildConfig
 import com.scandrug.scandrug.base.BaseApplication
 import com.scandrug.scandrug.data.local.AppPreferences
+import com.scandrug.scandrug.data.remotemodel.DrugDetailsModel
 import com.scandrug.scandrug.data.resources.Resource
 import com.scandrug.scandrug.domain.usecases.AuthUseCases
 import com.scandrug.scandrug.utils.SingleLiveEvent
@@ -24,7 +25,7 @@ class LoginViewModel(private val authUseCases: AuthUseCases) : ViewModel() {
     val isError: SingleLiveEvent<String> = SingleLiveEvent()
     val loading: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val baseUrlResponse: SingleLiveEvent<String> = SingleLiveEvent()
-
+    private lateinit var loginType:String
     private var sharedPreferences =
         BaseApplication.instance.getSharedPreferences(BuildConfig.PREF_NAME, Context.MODE_PRIVATE)
     private var appPreferences: AppPreferences = AppPreferences(sharedPreferences)
@@ -60,4 +61,13 @@ class LoginViewModel(private val authUseCases: AuthUseCases) : ViewModel() {
                 emit(Resource.Failure(e.message.toString()))
             }
         }
+
+
+    fun setLoginType(loginType:String) {
+        this.loginType=  loginType
+    }
+
+    fun getLoginType(): String {
+        return this.loginType
+    }
 }

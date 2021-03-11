@@ -37,13 +37,11 @@ class DeliveryViewModel(private val mainUseCases: MainUseCases) : ViewModel() {
     private var appPreferences: AppPreferences = AppPreferences(sharedPreferences)
     private var token: String = appPreferences.getAccessToken().toString()
     private lateinit var drugDetailsModel:DrugDetailsModel
-    private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseFirestore.getInstance()
     val listOfDrugs: SingleLiveEvent<List<DrugDetailsModel>> = SingleLiveEvent()
 
     private lateinit var  drugDetailsItemList: MutableList<DrugDetailsModel>
     val navigateToMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
-    val userId = auth.currentUser!!.uid
     fun setDrugDetailsModel(drugDetailsModel: DrugDetailsModel) {
         this.drugDetailsModel = drugDetailsModel
     }

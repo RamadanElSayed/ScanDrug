@@ -94,8 +94,8 @@ object Validator {
         return when {
             mobileNumber.isBlank() ->
                 false
-            !MOBILE_NUMBER.matcher(mobileNumber).matches() ->
-                false
+//            !MOBILE_NUMBER.matcher(mobileNumber).matches() ->
+//                false
             else ->
                 true
         }

@@ -136,7 +136,7 @@ class DeliveryDetailsFragment : Fragment() ,DeliveryOnClickView{
         deliveryDetailsBinding.tvProductName.text=drugDetailsModel.drugName
         deliveryDetailsBinding.tvPrice.text=drugDetailsModel.drugPrice
         deliveryDetailsBinding.tvCompanyName.text=drugDetailsModel.tabletNumber
-
+        deliveryDetailsBinding.dateId.text=drugDetailsModel.dateOrder
 
         when (drugDetailsModel.orderStatus) {
             1 -> {
