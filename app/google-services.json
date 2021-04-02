@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1065729944460",
-    "project_id": "scandrug-29d15",
-    "storage_bucket": "scandrug-29d15.appspot.com"
+    "project_number": "349571923609",
+    "project_id": "scandrug-6dac7",
+    "storage_bucket": "scandrug-6dac7.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1065729944460:android:1c61c4a7cfcb07196304a9",
+        "mobilesdk_app_id": "1:349571923609:android:e50662c6058b28916fc208",
         "android_client_info": {
           "package_name": "com.scandrug.scandrug"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1065729944460-56hb49tmal3m4ofqed9gb5me9popj2rf.apps.googleusercontent.com",
+          "client_id": "349571923609-4mcug1dt351pn7rboa8a31bcnce2slc6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZllu4leEdXpKX3fNgQgcA0Qt1oz5CeQE"
+          "current_key": "AIzaSyBOx3wqPOa2Xtuvx-Pvkysylen7B5bSdUg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1065729944460-56hb49tmal3m4ofqed9gb5me9popj2rf.apps.googleusercontent.com",
+              "client_id": "349571923609-4mcug1dt351pn7rboa8a31bcnce2slc6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
